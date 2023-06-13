@@ -33,6 +33,9 @@ body {
   padding: 0;
 }
 
+.bg_black_primary{
+  background-color: var(--primaryBlack);
+}
 .bg_primary {
   background-color: var(--primaryYellow);
 }
