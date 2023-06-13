@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+.container {
+    background-image: url('/img/LandingPage/Hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    
+}
+
+/* .container::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9vh 80px 0 80px;
+    border-color: black transparent transparent transparent;
+    left: 20vw;
+    transform: translateY(100%);
+    
+} */
+
+.container .containerFilter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 80%),
+        rgba(255, 232, 133, 0.2);
+    z-index: 1;
+}
+
+.container>.info {
+    position: relative;
+    border: 5px solid rgba(255, 255, 255, 0.7);
+    padding: 30px 20px;
+    width: 50vw;
+    min-width: 300px;
+    padding-left: 10px;
+    z-index: 2;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container>.info h1 {
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.container>.info .subHeader {
+    color: #f2db56;
+    font-weight: bold;
+    background-color: rgb(22, 22, 22);
+    padding: 5px 10px;
+    border-radius: 3px;
+    max-width: 100%;
+}
