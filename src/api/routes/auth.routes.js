@@ -1,3 +1,9 @@
+const baseAuthPath = 'auth/login/'
+
 export default {
-    login: 'auth/login/beekeeper',
+    login: {
+        beekeper: baseAuthPath + 'beekeeper',
+        client: baseAuthPath + 'client',
+        admin: baseAuthPath + 'manager',
+    }
 }

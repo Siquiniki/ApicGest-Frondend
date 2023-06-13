@@ -32,12 +32,12 @@ const AppBar = () => {
               <span className="navbar-toggler-icon" />
             </button>
             <a
-              className="navbar-brand fw-bold"
+              className="navbar-brand fw-bold text-uppercase"
               href="#"
               onClick={() => setCounter(counter + 1)}
             >
               <img src="/img/Panal.png" width={'50px'} alt="" />
-              {counter > 7 ? 'ApiRest' : 'ApiGest'}
+              {counter > 7 ? 'ApiRest' : 'ApicGest'}
             </a>
           </div>
           <div className="nav-item dropstart me-2">
@@ -66,7 +66,7 @@ const AppBar = () => {
               </li>
               <li>
                 <Link to={routesName.auth.signUp} className="dropdown-item">
-                  Registrarse
+                  Solicitar incorporación
                 </Link>
               </li>
               <li>

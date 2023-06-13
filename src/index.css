@@ -46,3 +46,7 @@ body {
 .text_primary{
   color: var(--primaryYellow);
 }
+
+.border_primary{
+  border-color: var(--primaryYellow) !important;
+}

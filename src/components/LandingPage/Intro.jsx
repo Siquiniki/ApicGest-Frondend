@@ -1,6 +1,3 @@
-import Lottie from 'react-lottie';
-import lottieBee from '../../assets/lotties/66723-bee-lieve.json';
-
 import { Link } from 'react-router-dom';
 import routesName from '../../constants/routesName';
 
