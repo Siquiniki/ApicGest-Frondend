@@ -1,8 +1,55 @@
 import { Link } from 'react-router-dom';
+import routes from '../../constants/routesName';
+const loggedOutRoutes = routes.loggedOut;
+const loggedinRoutes = routes.loggedIn;
+import { useContext, useState } from 'react';
+import { AppContext } from '../../contexts/AppContext';
 import routesName from '../../constants/routesName';
-import { useState } from 'react';
+
+const UserMenuDropdown = ({ user, logOut }) => {
+  return (
+    <>
+      {user ? (
+        <ul className="dropdown-menu">
+          <span className='text-secondary w-100 ms-3'>{user}</span>
+          <li>
+            <Link to={loggedinRoutes.dashboard.root} className="dropdown-item">
+              Dashboard
+            </Link>
+          </li>
+          <li className="dropdown-item" onClick={logOut}>
+              Cerrar sesión
+          </li>
+        </ul>
+      ) : (
+        <ul className="dropdown-menu">
+          <li>
+            <Link
+              to={loggedOutRoutes.auth.login}
+              className="dropdown-item"
+              href={routesName.loggedOut.auth.login}
+            >
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to={loggedOutRoutes.auth.signUp} className="dropdown-item">
+              Registrarse
+            </Link>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Entrar como invitado
+            </a>
+          </li>
+        </ul>
+      )}
+    </>
+  );
+};
 
 const AppBar = () => {
+  const { user, logOut } = useContext(AppContext);
   const sectionsLandingPage = [
     { label: 'Inicio', href: '#' },
     { label: 'Servicios', href: '#actions' },
@@ -54,27 +101,7 @@ const AppBar = () => {
               ></i>
               <i className="bi bi-chevron-down"></i>
             </a>
-            <ul className="dropdown-menu">
-              <li>
-                <Link
-                  to={routesName.auth.login}
-                  className="dropdown-item"
-                  href="/auth/login"
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to={routesName.auth.signUp} className="dropdown-item">
-                  Solicitar incorporación
-                </Link>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Entrar como invitado
-                </a>
-              </li>
-            </ul>
+            <UserMenuDropdown user={user} logOut={logOut}/>
           </div>
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

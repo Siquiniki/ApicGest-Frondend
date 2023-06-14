@@ -1,9 +1,11 @@
-const baseAuthPath = 'auth/login/'
+const baseAuthPath = 'auth/'
+const baseLoginAuthPath = baseAuthPath + 'login/'
 
 export default {
     login: {
-        beekeper: baseAuthPath + 'beekeeper',
-        client: baseAuthPath + 'client',
-        admin: baseAuthPath + 'manager',
-    }
+        beekeper: baseLoginAuthPath + 'beekeeper',
+        client: baseLoginAuthPath + 'client',
+        admin: baseLoginAuthPath + 'manager',
+    },
+    authUser: baseAuthPath + 'is-user-auth'
 }

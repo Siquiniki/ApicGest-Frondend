@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const AuthPageLayout = ({ children, loading, errorMsg }) => {
   return (
     <div className="container">
       <main className="form-signin row m-auto">
         <div className="d-flex justify-content-center">
-          <img src="/img/Panal.png" alt="" width={200} />
+          <Link to={'/'}>
+            <img src="/img/Panal.png" alt="" width={200} />
+          </Link>
         </div>
         <div className="bg-light-subtle shadow-lg p-5 py-3 border_primary border-top border-5 position-relative">
           {loading && (

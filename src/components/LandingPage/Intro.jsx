@@ -5,7 +5,7 @@ const Intro = () => {
   return (
     <div>
       {
-        <div className="p-5 mb-4 bg_secondary text-white rounded-3">
+        <div className="p-2 p-md-5 mb-4 bg_secondary text-white rounded-3">
           <div className="container-fluid py-5">
             <h1 className="display-5 text_primary fw-bold">
               Encuentra productos de abejas naturales y orgánicos
@@ -20,7 +20,7 @@ const Intro = () => {
               abejas en tu vida diaria. ¡Gracias por apoyar a nuestros pequeños
               productores!
             </p>
-            <Link to={routesName.auth.signUp}>
+            <Link to={routesName.loggedOut.auth.signUp}>
               <button className="btn btn-warning bg_primary btn-lg" type="button">
                 Solicitar incorporación
               </button>

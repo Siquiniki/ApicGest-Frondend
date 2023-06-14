@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import routesName from '../constants/routesName';
 
 const Login = () => {
-  const { data, setData, login } = useContext(AppContext);
+  const { login, setUser:setUserGlobal, setRole } = useContext(AppContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [user, setUser] = useState('arifuretA');
+  const [user, setUser] = useState('usuario1');
   const [password, setPassword] = useState('@M4y4D3v3');
   const [selectedOption, setSelectedOption] = useState('client');
 
@@ -31,15 +31,16 @@ const Login = () => {
     login(route, params)
       .then((res) => {
         console.log(res);
-        navigate(routesName.home)
+        sessionStorage.setItem('access_token', res.data.token);
+        setUserGlobal(res.data?.user)
+        setRole(res.data.role)
+        navigate('/')
       })
       .catch((e) => {
         console.error(e);
-        setErrorMsg(e.response?.data?.message);
+        setErrorMsg(e.response?.data?.message || 'Ha habido un problema en la autenticación :( intentelo mas tarde...');
       })
       .finally(() => setLoading(false));
-
-    // sessionStorage.setItem('test', 'puto');
   };
 
   const handleOptionChange = (event) => {

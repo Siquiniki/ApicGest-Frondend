@@ -5,12 +5,21 @@ import AuthService from '../services/Auth.service';
 const AppContext = React.createContext();
 
 function AppContextProvider({ children }) {
-  const [data, setData] = useState('initial data');
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null)
   
   const contextData = {
-    data,
-    setData,
+    user,
+    setUser,
+    role,
+    setRole,
     login: (route, params) => AuthService.login(route, params),
+    logOut: () => {
+      sessionStorage.removeItem('access_token')
+      setUser(null)
+      setRole(null)
+    },
+    isUserAuth: () => AuthService.isUserAuth(),
   };
   return (
     <AppContext.Provider value={contextData}>{children}</AppContext.Provider>

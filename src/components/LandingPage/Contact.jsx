@@ -7,7 +7,6 @@ const Div = styled.div`
 
 const ContactContainer = styled.div`
   position: relative;
-  height: 60vh;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
