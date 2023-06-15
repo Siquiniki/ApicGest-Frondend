@@ -3,15 +3,15 @@ import { AppContext } from '../contexts/AppContext';
 import AuthPageLayout from '../components/AuthPageLayout';
 import authRoutes from '../api/routes/auth.routes';
 import { useNavigate } from 'react-router-dom';
-import routesName from '../constants/routesName';
+// import routesName from '../constants/routesName';
 
 const Login = () => {
   const { login, setUser:setUserGlobal, setRole } = useContext(AppContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [user, setUser] = useState('usuario1');
-  const [password, setPassword] = useState('@M4y4D3v3');
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
   const [selectedOption, setSelectedOption] = useState('client');
 
   const handleLogin = () => {
@@ -32,7 +32,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         sessionStorage.setItem('access_token', res.data.token);
-        setUserGlobal(res.data?.user)
+        setUserGlobal(res.data?.user || res.data?.email)
         setRole(res.data.role)
         navigate('/')
       })

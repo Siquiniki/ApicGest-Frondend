@@ -1,14 +1,11 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import routes from '../../constants/routesName';
+// import routes from '../../constants/routesName';
 import { AppContext } from '../../contexts/AppContext';
 import { useContext } from 'react';
 import SideBar from './SideBar';
-const loggedOutRoutes = routes.loggedOut;
-const loggedinRoutes = routes.loggedIn;
 
-
-const UserMenuDropdown = ({ user }) => {
+const UserMenuDropdown = ({ user, logOut }) => {
   return (
     <>
       <ul className="dropdown-menu position-absolute" data-bs-theme="light">
@@ -19,7 +16,7 @@ const UserMenuDropdown = ({ user }) => {
           </Link>
         </li>
         <li>
-          <Link to={'/'} className="dropdown-item">
+          <Link to={'/'} className="dropdown-item" onClick={logOut}>
             Cerrar sesión
           </Link>
         </li>
@@ -29,12 +26,27 @@ const UserMenuDropdown = ({ user }) => {
 };
 
 const DashboardLayout = ({ children }) => {
-  const { user } = useContext(AppContext);
+  const { user, logOut, info } = useContext(AppContext);
   return (
     <div>
+      {info && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '0',
+            left: 0,
+            width: '100%',
+            zIndex: 1000000,
+          }}
+          className={`alert alert-${info.type}`}
+        >
+          {info.msg}
+        </div>
+      )}
+
       <>
         <header
-          className="navbar fixed-top bg-dark p-0 shadow d-grid align-items-center justify-content-between"
+          className="navbar fixed-top bg-dark p-0  d-grid align-items-center justify-content-between"
           style={{ height: '58px', gridTemplateColumns: 'auto 1fr' }}
           data-bs-theme="dark"
         >
@@ -60,7 +72,7 @@ const DashboardLayout = ({ children }) => {
                 ></i>
                 <i className="bi bi-chevron-down"></i>
               </a>
-              <UserMenuDropdown user={user} />
+              <UserMenuDropdown user={user} logOut={logOut} />
             </div>
             <li className="nav-item text-nowrap">
               <button
@@ -78,15 +90,14 @@ const DashboardLayout = ({ children }) => {
           </ul>
         </header>
         <div className="container-fluid">
-          <div className="row" style={{ height: '100vh', overflowY: 'hidden' }}>
+          <div className="row" style={{ overflowY: 'hidden' }}>
             <SideBar />
-            {/* //TODO hacer el router para las secciones */}
             <main
               className="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-3 pb-4"
               style={{
                 overflowY: 'auto',
                 maxHeight: '100%',
-                paddingTop: '58px',
+                paddingTop: '60px',
               }}
             >
               {children}
@@ -98,8 +109,12 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-DashboardLayout.propTypes = {
-  children: PropTypes.array,
+UserMenuDropdown.propTypes = {
+  user: PropTypes.string,
+  logOut: PropTypes.func,
+
+};DashboardLayout.propTypes = {
+  children: PropTypes.any,
 };
 
 export default DashboardLayout;

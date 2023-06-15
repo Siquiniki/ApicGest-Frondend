@@ -5,8 +5,12 @@ const login = (route, params) => {
     return ApiClient.post(route, params, { excludeToken: true })
 }
 
+const signUp = (route, params) => {
+    return ApiClient.post(route, params, { excludeToken: true })
+}
+
 const isUserAuth = () => {
     return ApiClient.post(authRoutes.authUser)
 }
 
-export default { login,isUserAuth};
+export default { login,isUserAuth, signUp};

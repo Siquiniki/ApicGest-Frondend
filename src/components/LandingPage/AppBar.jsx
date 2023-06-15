@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import routes from '../../constants/routesName';
 const loggedOutRoutes = routes.loggedOut;
@@ -36,11 +37,6 @@ const UserMenuDropdown = ({ user, logOut }) => {
             <Link to={loggedOutRoutes.auth.signUp} className="dropdown-item">
               Registrarse
             </Link>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              Entrar como invitado
-            </a>
           </li>
         </ul>
       )}
@@ -126,5 +122,10 @@ const AppBar = () => {
     </nav>
   );
 };
+
+UserMenuDropdown.propTypes ={
+  user: PropTypes.string,
+  logOut: PropTypes.func
+}
 
 export default AppBar;
